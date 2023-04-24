@@ -1,0 +1,47 @@
+#include <iostream>
+#include <functional> // 内建函数对象头文件
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+void test01() {
+  // template<class T> T negate<T> // 取反仿函数
+  negate<int> negate1;
+  cout << negate1(10) << endl;
+
+  // template<class T> T plus<T> // 加法仿函数
+  plus<int> plus1;
+  cout << plus1(1, 2) << endl;
+}
+
+void test02() {
+
+  vector<int> vector1;
+
+  vector1.push_back(10);
+  vector1.push_back(20);
+  vector1.push_back(30);
+  vector1.push_back(40);
+
+  sort(vector1.begin(), vector1.end(), greater<int>());
+  for_each(vector1.begin(), vector1.end(), [](int value) {
+    cout << value << "  "; 
+  });
+
+  cout << endl;
+
+  sort(vector1.begin(), vector1.end(), less<int>());
+  for_each(vector1.begin(), vector1.end(), [](int value) {
+    cout << value << "  "; 
+  });
+}
+
+int main() {
+
+  //test01();
+
+  test02();
+  
+  return EXIT_SUCCESS;
+}
